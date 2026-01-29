@@ -1,18 +1,18 @@
 import { Head, Link, usePage } from '@inertiajs/react';
-import { dashboard, login, register } from '@/routes';
+import { dashboard, login } from '@/routes';
 import type { SharedData } from '@/types';
 import { Button } from '@/components/ui/button';
 import ParticleBackground from '@/components/particle-background';
-import { 
-    Sparkles, 
-    Shield, 
-    Zap, 
+import {
+    Sparkles,
+    Shield,
+    Zap,
     ArrowRight,
     Star,
     MessageSquare,
     CheckCircle2,
     Clock,
-    Users
+    Users,
 } from 'lucide-react';
 
 export default function Welcome({
@@ -25,14 +25,14 @@ export default function Welcome({
     return (
         <div className="relative min-h-screen overflow-hidden bg-slate-950 font-sans text-white">
             <Head title="Pengaduan Sekolah - Suaramu Untuk Masa Depan" />
-            
+
             {/* Particle Background */}
             <ParticleBackground />
 
             {/* Gradient Overlays */}
             <div className="fixed inset-0 -z-10">
                 <div className="absolute top-0 left-1/4 h-[500px] w-[500px] rounded-full bg-blue-500/20 blur-[120px]"></div>
-                <div className="absolute bottom-0 right-1/4 h-[500px] w-[500px] rounded-full bg-purple-500/20 blur-[120px]"></div>
+                <div className="absolute right-1/4 bottom-0 h-[500px] w-[500px] rounded-full bg-purple-500/20 blur-[120px]"></div>
             </div>
 
             {/* Navigation */}
@@ -58,12 +58,15 @@ export default function Welcome({
                     <div className="flex items-center gap-4">
                         {auth.user ? (
                             <Link href={dashboard()}>
-                                <Button className="rounded-full border text-white border-white/20 bg-white/10 px-6 font-bold backdrop-blur-sm transition-all hover:bg-white/20">
+                                <Button className="rounded-full border border-white/20 bg-white/10 px-6 font-bold text-white backdrop-blur-sm transition-all hover:bg-white/20">
                                     Dashboard
                                 </Button>
                             </Link>
                         ) : (
-                            <Link href={login()} className="text-sm font-bold text-slate-300 transition-colors hover:text-white">
+                            <Link
+                                href={login()}
+                                className="text-sm font-bold text-slate-300 transition-colors hover:text-white"
+                            >
                                 Masuk
                             </Link>
                         )}
@@ -83,8 +86,8 @@ export default function Welcome({
                                 </span>
                                 Platform Pengaduan Digital Terdepan
                             </div>
-                            
-                            <h1 className="text-5xl font-black leading-[1.1] tracking-tight lg:text-7xl">
+
+                            <h1 className="text-5xl leading-[1.1] font-black tracking-tight lg:text-7xl">
                                 <span className="bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
                                     Suaramu
                                 </span>
@@ -93,17 +96,26 @@ export default function Welcome({
                                     Untuk Masa Depan
                                 </span>
                                 <br />
-                                <span className="text-slate-400">Sekolah Kita.</span>
+                                <span className="text-slate-400">
+                                    Sekolah Kita.
+                                </span>
                             </h1>
-                            
+
                             <p className="max-w-xl text-lg leading-relaxed text-slate-300">
-                                Laporkan kendala fasilitas sekolah dengan cepat dan transparan. Bersama kita wujudkan lingkungan belajar yang nyaman dan berkualitas.
+                                Laporkan kendala fasilitas sekolah dengan cepat
+                                dan transparan. Bersama kita wujudkan lingkungan
+                                belajar yang nyaman dan berkualitas.
                             </p>
-                            
+
                             <div className="flex flex-col items-start gap-4 sm:flex-row">
                                 <Link href={auth.user ? dashboard() : login()}>
-                                    <Button size="lg" className="group h-14 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-8 text-lg font-bold shadow-2xl shadow-blue-500/50 transition-all hover:scale-105 hover:shadow-blue-500/60">
-                                        {auth.user ? 'Ke Dashboard' : 'Mulai Lapor Sekarang'}
+                                    <Button
+                                        size="lg"
+                                        className="group h-14 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-8 text-lg font-bold shadow-2xl shadow-blue-500/50 transition-all hover:scale-105 hover:shadow-blue-500/60"
+                                    >
+                                        {auth.user
+                                            ? 'Ke Dashboard'
+                                            : 'Mulai Lapor Sekarang'}
                                         <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                                     </Button>
                                 </Link>
@@ -125,14 +137,30 @@ export default function Welcome({
                             {/* Stats */}
                             <div className="grid grid-cols-3 gap-6 pt-8">
                                 {[
-                                    { label: 'Laporan', value: '500+', icon: MessageSquare },
-                                    { label: 'Response Time', value: '<24h', icon: Clock },
-                                    { label: 'Selesai', value: '95%', icon: CheckCircle2 },
+                                    {
+                                        label: 'Laporan',
+                                        value: '500+',
+                                        icon: MessageSquare,
+                                    },
+                                    {
+                                        label: 'Response Time',
+                                        value: '<24h',
+                                        icon: Clock,
+                                    },
+                                    {
+                                        label: 'Selesai',
+                                        value: '95%',
+                                        icon: CheckCircle2,
+                                    },
                                 ].map((stat, i) => (
                                     <div key={i} className="space-y-2">
                                         <stat.icon className="h-5 w-5 text-blue-400" />
-                                        <p className="text-2xl font-black text-white">{stat.value}</p>
-                                        <p className="text-xs font-medium text-slate-400">{stat.label}</p>
+                                        <p className="text-2xl font-black text-white">
+                                            {stat.value}
+                                        </p>
+                                        <p className="text-xs font-medium text-slate-400">
+                                            {stat.label}
+                                        </p>
                                     </div>
                                 ))}
                             </div>
@@ -151,8 +179,8 @@ export default function Welcome({
                                             <div className="h-4 w-full rounded-md bg-white/5"></div>
                                             <div className="h-4 w-[80%] rounded-md bg-white/5"></div>
                                         </div>
-                                        <div className="aspect-video w-full overflow-hidden rounded-xl bg-gradient-to-br from-blue-500/10 to-purple-500/10 p-8 backdrop-blur-sm flex items-center justify-center">
-                                            <Sparkles className="h-16 w-16 text-blue-400 animate-pulse" />
+                                        <div className="flex aspect-video w-full items-center justify-center overflow-hidden rounded-xl bg-gradient-to-br from-blue-500/10 to-purple-500/10 p-8 backdrop-blur-sm">
+                                            <Sparkles className="h-16 w-16 animate-pulse text-blue-400" />
                                         </div>
                                         <div className="flex justify-end gap-3 pt-4">
                                             <div className="h-10 w-24 rounded-full bg-white/5"></div>
@@ -161,7 +189,7 @@ export default function Welcome({
                                     </div>
                                 </div>
                             </div>
-                            
+
                             {/* Floating Elements */}
                             <div className="absolute -top-8 -right-8 h-32 w-32 animate-pulse rounded-full bg-blue-500/20 blur-2xl"></div>
                             <div className="absolute -bottom-8 -left-8 h-32 w-32 animate-pulse rounded-full bg-purple-500/20 blur-2xl"></div>
@@ -178,7 +206,8 @@ export default function Welcome({
                             Kenapa Memilih Kami?
                         </h2>
                         <p className="mx-auto max-w-2xl text-lg text-slate-400">
-                            Platform yang dirancang dengan teknologi terkini untuk kemudahan dan transparansi maksimal.
+                            Platform yang dirancang dengan teknologi terkini
+                            untuk kemudahan dan transparansi maksimal.
                         </p>
                     </div>
 
@@ -203,14 +232,25 @@ export default function Welcome({
                                 gradient: 'from-blue-500 to-purple-500',
                             },
                         ].map((feature, i) => (
-                            <div key={i} className="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-slate-900/50 to-slate-800/50 p-8 backdrop-blur-sm transition-all hover:border-white/20 hover:shadow-2xl">
-                                <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 transition-opacity group-hover:opacity-10`}></div>
+                            <div
+                                key={i}
+                                className="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-slate-900/50 to-slate-800/50 p-8 backdrop-blur-sm transition-all hover:border-white/20 hover:shadow-2xl"
+                            >
+                                <div
+                                    className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 transition-opacity group-hover:opacity-10`}
+                                ></div>
                                 <div className="relative">
-                                    <div className={`mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${feature.gradient} shadow-lg`}>
+                                    <div
+                                        className={`mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${feature.gradient} shadow-lg`}
+                                    >
                                         <feature.icon className="h-7 w-7 text-white" />
                                     </div>
-                                    <h3 className="mb-3 text-xl font-bold text-white">{feature.title}</h3>
-                                    <p className="text-slate-400 leading-relaxed">{feature.desc}</p>
+                                    <h3 className="mb-3 text-xl font-bold text-white">
+                                        {feature.title}
+                                    </h3>
+                                    <p className="leading-relaxed text-slate-400">
+                                        {feature.desc}
+                                    </p>
                                 </div>
                             </div>
                         ))}
@@ -224,23 +264,30 @@ export default function Welcome({
                     <div className="relative overflow-hidden rounded-[3rem] border border-white/10 bg-gradient-to-br from-blue-600/20 to-purple-600/20 p-1 backdrop-blur-sm">
                         <div className="rounded-[2.8rem] bg-gradient-to-br from-slate-900 to-slate-800 px-12 py-20 text-center">
                             <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjAzIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-50"></div>
-                            
+
                             <div className="relative z-10 space-y-8">
                                 <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-purple-600 shadow-2xl shadow-blue-500/50">
                                     <Sparkles className="h-10 w-10 text-white" />
                                 </div>
-                                
+
                                 <h2 className="bg-gradient-to-r from-white to-slate-300 bg-clip-text text-4xl font-black text-transparent lg:text-5xl">
                                     Siap Membuat Perubahan?
                                 </h2>
-                                
+
                                 <p className="mx-auto max-w-2xl text-lg text-slate-300">
-                                    Bergabunglah dengan ribuan siswa yang telah berkontribusi dalam perbaikan fasilitas sekolah.
+                                    Bergabunglah dengan ribuan siswa yang telah
+                                    berkontribusi dalam perbaikan fasilitas
+                                    sekolah.
                                 </p>
-                                
+
                                 <Link href={auth.user ? dashboard() : login()}>
-                                    <Button size="lg" className="h-14 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-10 text-lg font-bold shadow-2xl shadow-blue-500/50 transition-all hover:scale-105 hover:shadow-blue-500/60">
-                                        {auth.user ? 'Ke Dashboard' : 'Mulai Sekarang'}
+                                    <Button
+                                        size="lg"
+                                        className="h-14 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-10 text-lg font-bold shadow-2xl shadow-blue-500/50 transition-all hover:scale-105 hover:shadow-blue-500/60"
+                                    >
+                                        {auth.user
+                                            ? 'Ke Dashboard'
+                                            : 'Mulai Sekarang'}
                                     </Button>
                                 </Link>
                             </div>
@@ -255,15 +302,19 @@ export default function Welcome({
                     <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
                         <div className="flex items-center gap-3">
                             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-purple-600">
-                                <Star className="h-5 w-5 text-white" fill="white" />
+                                <Star
+                                    className="h-5 w-5 text-white"
+                                    fill="white"
+                                />
                             </div>
                             <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-lg font-black tracking-tight text-transparent">
                                 PENGADUAN SEKOLAH
                             </span>
                         </div>
-                        
+
                         <p className="text-sm text-slate-500">
-                            © 2026 Pengaduan Sekolah. UKK P3 JWD. All rights reserved.
+                            © 2026 Pengaduan Sekolah. UKK P3 JWD. All rights
+                            reserved.
                         </p>
                     </div>
                 </div>
